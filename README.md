@@ -1,3 +1,11 @@
-# My first nodejs electron project
 
-I want to learn nodejs and I think that it's going to be a good start for me if I begin to learn electron
+# Extremely minimalistic text editor
+
+One of my first node js apps, and honestly, it's been pretty fun making this.
+
+# Shortcuts and know-hows
+
+1. **ctrl + e**
+    * Exits the program
+
+---
