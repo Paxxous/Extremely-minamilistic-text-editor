@@ -1,4 +1,4 @@
-const { app, BrowserWindow, globalShortcut } = require('electron')
+const { app, BrowserWindow, globalShortcut, Menu } = require('electron')
 
 // Create the main window
 const createWindow = () => {
@@ -7,15 +7,22 @@ const createWindow = () => {
   const win = new BrowserWindow({
     width: 400,
     height: 400
-    
+
   });
 
   win.loadFile('index.html');
+
+  // Remove that ugly title bar and remove unnecessary keyboard shortcuts
+  win.removeMenu();
+
+
+  // Change the window title
+  win.title = "Text editor";
 }
 
-// Create window on ready so that no errors happen
+// Create window on ready so that no nasty errors happen
 app.whenReady().then(() => {
-  createWindow();
+  createWindow();  
 
   // Global shortcut so the user has the ablitiy to exit
   globalShortcut.register('ctrl+e', () => {
