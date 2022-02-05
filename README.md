@@ -8,4 +8,3 @@ One of my first node js apps, and honestly, it's been pretty fun making this.
 1. **ctrl + e**
     * Exits the program
 
----
