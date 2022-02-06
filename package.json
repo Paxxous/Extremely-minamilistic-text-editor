@@ -1,8 +1,27 @@
 {
-  "scripts": {
-    "start": "electron src\\index.js"
+  "name": "electron",
+  "version": "1.0.0",
+  "description": "A very simplistic text editor",
+  "main": "src/index.js",
+  "directories": {
+    "test": "test"
   },
-  "devDependencies": {
-    "electron": "^17.0.0"
-  }
+  "scripts": {
+    "test": "electron src/."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Paxxous/First-Electron-App.git"
+  },
+  "keywords": [
+    "text-editor",
+    "electron",
+    "simplistic"
+  ],
+  "author": "paxxous",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Paxxous/First-Electron-App/issues"
+  },
+  "homepage": "https://github.com/Paxxous/First-Electron-App#readme"
 }
