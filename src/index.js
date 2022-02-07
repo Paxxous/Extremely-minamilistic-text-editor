@@ -1,17 +1,28 @@
-const { app, BrowserWindow, globalShortcut, Menu } = require('electron')
+const { app, BrowserWindow, globalShortcut } = require('electron');
+const path = require('path');
 
 // Create the main window
 const createWindow = () => {
 
   // Adjust a few settings
   const win = new BrowserWindow({
-    width: 400,
-    height: 400,
-    icon: 'src\\icon.png',
+    // What the height and width that you open up to
+    width: 500,
+    height: 600,
+
+    // Minimun width and height
+    minWidth: 400,
+    minHeight: 400,
+
+    icon: __dirname + '/icon.png',
     
     // Change the window title
-    title: "text editor"
-    
+    title: "text editor",
+
+    webPreferences: {
+      // Preload so that the javascript can access the text you write
+      preload: path.join(__dirname, 'preload.js'),
+    }    
   });
   
   win.loadFile('index.html');
@@ -23,7 +34,6 @@ const createWindow = () => {
 // Create window on ready so that no nasty errors happen
 app.whenReady().then(() => {
   createWindow();
-
 });
 
 app.whenReady().then(() => {
@@ -32,6 +42,10 @@ app.whenReady().then(() => {
   globalShortcut.register('ctrl+e', () => {
     console.log("exiting...");
     app.exit();
+  });
+
+  globalShortcut.register('ctrl+s', () => {
+    console.log("saving...");
   });
 })
 
