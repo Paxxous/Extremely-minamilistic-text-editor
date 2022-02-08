@@ -1,4 +1,5 @@
-const { app, BrowserWindow, globalShortcut } = require('electron');
+const { app, BrowserWindow, globalShortcut, ipcRenderer, ipcMain, contextBridge } = require('electron');
+const { writeFileSync, readFileSync, fstat } = require('fs');
 const path = require('path');
 
 // Create the main window
@@ -22,13 +23,16 @@ const createWindow = () => {
     webPreferences: {
       // Preload so that the javascript can access the text you write
       preload: path.join(__dirname, 'preload.js'),
-    }    
+
+      nodeIntegration: 'true',
+      contextIsolation: false,
+    }
   });
   
   win.loadFile('index.html');
 
   // Remove that ugly title bar and remove unnecessary keyboard shortcuts
-  win.removeMenu();
+  // win.removeMenu();
 }
 
 // Create window on ready so that no nasty errors happen
@@ -46,11 +50,17 @@ app.whenReady().then(() => {
 
   globalShortcut.register('ctrl+s', () => {
     console.log("saving...");
+
+    ipcMain.on('async', (e, arg1) => {
+      writeFileSync
+    })
+
   });
-})
+});
+
 
 
 // when all windows close this app actually closes
 app.on('window-all-closed', () => {
   if (process !== 'darwin') app.quit();
-})
+});

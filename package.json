@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/Paxxous/First-Electron-App/issues"
   },
-  "homepage": "https://github.com/Paxxous/First-Electron-App#readme"
+  "homepage": "https://github.com/Paxxous/First-Electron-App#readme",
+  "devDependencies": {
+    "electron": "^17.0.0"
+  }
 }

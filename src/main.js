@@ -3,8 +3,10 @@
   DO NOT TRY AND WRITE NODE JS CODE IN HERE IT WILL NOT WORK.
 */
 
-const fs = require('fs');
+const { ipcMain, ipcRenderer } = require('electron')
 
-const thecontent = "Hello world!";
 
-fs.writeFileSync('hello.txt', thecontent);
+const getText = setInterval(function() {
+  var data = document.getElementById('the-editor').innerText
+  ipcRenderer.send('async', data)
+}, 1)
