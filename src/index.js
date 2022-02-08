@@ -24,6 +24,7 @@ const createWindow = () => {
       // Preload so that the javascript can access the text you write
       preload: path.join(__dirname, 'preload.js'),
 
+      // Allow for node code to be run on index.html
       nodeIntegration: 'true',
       contextIsolation: false,
     }
@@ -32,7 +33,7 @@ const createWindow = () => {
   win.loadFile('index.html');
 
   // Remove that ugly title bar and remove unnecessary keyboard shortcuts
-  // win.removeMenu();
+  win.removeMenu();
 }
 
 // Create window on ready so that no nasty errors happen
@@ -51,9 +52,12 @@ app.whenReady().then(() => {
   globalShortcut.register('ctrl+s', () => {
     console.log("saving...");
 
+    // Get the constantly sent ipc that holds the text that will be saved :D
     ipcMain.on('async', (e, arg1) => {
-      writeFileSync
+      writeFileSync('test.txt', arg1, {mode: 0o777})
     })
+
+    console.log("Saved")
 
   });
 });
