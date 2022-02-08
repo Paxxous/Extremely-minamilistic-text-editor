@@ -54,7 +54,7 @@ app.whenReady().then(() => {
 
     // Get the constantly sent ipc that holds the text that will be saved :D
     ipcMain.on('async', (e, arg1) => {
-      writeFileSync('test.txt', arg1, {mode: 0o777})
+      writeFileSync('text.txt', arg1, {mode: 0o777})
     })
 
     console.log("Saved")

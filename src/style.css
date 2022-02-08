@@ -8,14 +8,20 @@
   caret-color: #0084ff;
 }
 
-#popup {
-  /* visibility: hidden; */
-  position: absolute;
+#bottombar {
+  visibility: hidden;
 
-  top: 50%;
-  left: 50%;
+  position: fixed;
+  margin-bottom: 50px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 
-  transform: translate(-50%, -50%);
+  background-color: aliceblue;
+}
+
+#mesage {
+  float: left;
 }
 
 * {
