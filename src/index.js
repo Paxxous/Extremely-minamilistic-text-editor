@@ -1,5 +1,5 @@
 const { app, BrowserWindow, globalShortcut, ipcRenderer, ipcMain, contextBridge } = require('electron');
-const { writeFileSync, readFileSync, fstat } = require('fs');
+const { writeFileSync, readFileSync, exists } = require('fs');
 const path = require('path');
 
 // Create the main window
@@ -30,7 +30,7 @@ const createWindow = () => {
     }
   });
   
-  win.loadFile('index.html');
+  win.loadFile(path.join(__dirname, 'index.html'));
 
   // Remove that ugly title bar and remove unnecessary keyboard shortcuts
   win.removeMenu();
@@ -53,8 +53,9 @@ app.whenReady().then(() => {
     console.log("saving...");
 
     // Get the constantly sent ipc that holds the text that will be saved :D
+
     ipcMain.on('async', (e, arg1) => {
-      writeFileSync('text.txt', arg1, {mode: 0o777})
+      writeFileSync('text.txt', arg1, {mode: 0o777});
     })
 
     console.log("Saved")

@@ -1,5 +1,5 @@
 {
-  "name": "electron",
+  "name": "simpletext",
   "version": "1.0.0",
   "description": "A very simplistic text editor",
   "main": "src/index.js",
@@ -45,7 +45,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "electron"
+            "name": "paxx's text editor"
           }
         },
         {
