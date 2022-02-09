@@ -15,7 +15,7 @@ const createWindow = () => {
     minWidth: 400,
     minHeight: 400,
 
-    icon: path.join(__dirname + '/icon.png'),
+    icon: path.join(__dirname + '/icon.ico'),
     
     // Change the window title
     title: "text editor",
