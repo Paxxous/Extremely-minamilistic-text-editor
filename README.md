@@ -10,3 +10,7 @@ One of my first node js apps, and honestly, it's been pretty fun making this.
 
 1. **ctrl + s**
     * Saves your file
+
+# Announcments:
+
+YAY!!! First version of beta is out :DD Supports both linux and windows.
