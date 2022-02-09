@@ -45,7 +45,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "paxx's text editor"
+            "name": "simpletext"
           }
         },
         {
