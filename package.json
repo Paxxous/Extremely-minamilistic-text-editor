@@ -1,6 +1,6 @@
 {
   "name": "simpletext",
-  "version": "1.0.0",
+  "version": "1.0-beta.0",
   "description": "A very simplistic text editor",
   "main": "src/index.js",
   "directories": {
@@ -40,7 +40,9 @@
   },
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "icon": "./src/icon.png"
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
