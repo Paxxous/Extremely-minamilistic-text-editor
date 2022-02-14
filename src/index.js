@@ -1,8 +1,10 @@
 const { app, BrowserWindow, globalShortcut, ipcRenderer, ipcMain, contextBridge } = require('electron');
-const { writeFileSync, readFileSync, exists } = require('fs');
+const fs = require('fs');
 const path = require('path');
 
-// Create the main window
+
+
+// Create the main window 
 const createWindow = () => {
 
   // Adjust a few settings
@@ -14,8 +16,8 @@ const createWindow = () => {
     // Minimun width and height
     minWidth: 400,
     minHeight: 400,
-
-    icon: path.join(__dirname + '/icon.ico'),
+    
+    icon: path.join(__dirname + '/one.png'),
     
     // Change the window title
     title: "text editor",
@@ -27,40 +29,24 @@ const createWindow = () => {
       // Allow for node code to be run on index.html
       nodeIntegration: 'true',
       contextIsolation: false,
-    }
+
+      devTools: true,
+    },
+
+    // Trying to add some custom menu items, this is defintley a project for another day
+    // frame: false
   });
   
   win.loadFile(path.join(__dirname, 'index.html'));
 
   // Remove that ugly title bar and remove unnecessary keyboard shortcuts
-  win.removeMenu();
+  // win.removeMenu();
 }
+
 
 // Create window on ready so that no nasty errors happen
 app.whenReady().then(() => {
   createWindow();
-});
-
-app.whenReady().then(() => {
-
-  // Global shortcut so the user has the ablitiy to exit
-  globalShortcut.register('ctrl+e', () => {
-    console.log("exiting...");
-    app.exit();
-  });
-
-  globalShortcut.register('ctrl+s', () => {
-    console.log("saving...");
-
-    // Get the constantly sent ipc that holds the text that will be saved :D
-
-    ipcMain.on('async', (e, arg1) => {
-      writeFileSync('text.txt', arg1, {mode: 0o777});
-    })
-
-    console.log("Saved")
-
-  });
 });
 
 
@@ -68,4 +54,45 @@ app.whenReady().then(() => {
 // when all windows close this app actually closes
 app.on('window-all-closed', () => {
   if (process !== 'darwin') app.quit();
+});
+
+// Create a settings.json to store settings data
+wr = `{
+
+}`;
+
+if (!fs.existsSync(path.join(__dirname, 'settings.json'))) {
+  fs.writeFileSync(path.join(__dirname, 'settings.json'), wr);
+}
+
+
+// If the simpletext directory doesn't exist, make one.
+const osDocuments = app.getPath('documents');
+if (!fs.existsSync(path.join(osDocuments, 'simpletext'))) {
+  console.log('creating simpletext directory :D')
+  fs.mkdirSync(path.join(osDocuments, 'simpletext'));
+}
+
+
+// Recieve the save ipc method and then save the file to the documents folder by default
+ipcMain.on('save', (e, data) => {
+  console.log('recived save...')
+
+  fs.writeFileSync(path.join(osDocuments, 'simpletext', 'text.txt'), data, {mode: 0o777})
+});
+
+ipcMain.on('saveCustom', (e, text, nof, eof) => {
+  // If there's blank input cancel the save
+  if (!nof && !eof) {
+    console.log('Canceled save, blank input.');
+    return;
+  }
+
+  // Just to debug the input
+  console.log(nof + '.' + eof);
+
+  // Actually save the file onto your OS' documents directory
+  file = nof + '.' + eof
+
+  fs.writeFileSync(path.join(osDocuments, 'simpletext', file), text, {mode: 0o777});
 });

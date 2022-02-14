@@ -9,20 +9,28 @@
     <link rel="stylesheet" href="style.css">
   </head>
 
-  <body>
+  <body id="body">
     <!-- Initialize editor -->
     <div id = "node-editor">
       <div id="the-editor" spellcheck="false" contenteditable="true">Basic text editor.</div>
     </div>
     
-    <!-- A little pop up api that I'm working on -->
+    <!-- A little pop up that I'm working on -->
     <div id="bottombar">
       <div id="message">
-        <h1>Name:</h1>
+        <form>
+          <label for="whatDirectory">Name:</label>
+          <input type="text" name="nameOfFile" id="nameOfFile"><br/><br/>
 
-        
+          <label for="whatDirectory">EOF (End of file)</label>
+          <input type="text" name="endOfFile" id="endOfFile"><br/><br/>
+
+
+          <input type="button" value="Save" id="Submit" onclick="getandsave()">
+        </form>
       </div>
     </div>
+
 
     <script src="main.js"></script>
   </body>
