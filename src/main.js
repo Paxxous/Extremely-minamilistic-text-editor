@@ -21,14 +21,12 @@ document.addEventListener('keydown', function(key) {
   };
 });
 
-
 function getandsave() {
   console.log('sent')
   let text = document.getElementById('the-editor').innerText;
 
   let nof = document.getElementById('nameOfFile').value;
   let eof = document.getElementById('endOfFile').value;
-
 
   ipcRenderer.send('saveCustom', text, nof, eof);
   document.getElementById('bottombar').style.visibility = 'hidden';
