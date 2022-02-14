@@ -13,6 +13,7 @@ One of my first node js apps, and honestly, it's been pretty fun making this.
 
 1. **ctrl + d**
     * Advanced saves your file, (Basically rename the file)
+    
     * Leave blank and press save to cancel
 
 1. **ctrl + g**
