@@ -2,14 +2,6 @@ const { app, BrowserWindow, globalShortcut, ipcRenderer, ipcMain, contextBridge 
 const fs = require('fs');
 const path = require('path');
 
-// Setup the settings.json
-const setUp = `{
-  "darkmode": false,
-}`
-
-if (!fs.existsSync(path.join(__dirname, 'settings.json'))) {
-  fs.writeFileSync(path.join(__dirname, 'settings.json'), setUp);
-}
 
 
 // Create the main window
