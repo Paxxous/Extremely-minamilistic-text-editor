@@ -4,11 +4,8 @@
   "description": "A very simplistic text editor",
   "main": "./src/index.js",
   "build": {
-
     "appId": "simpletext",
     "win": {
-  
-
       "target": [
         "nsis"
       ],
@@ -20,7 +17,6 @@
       "uninstallDisplayName": "simpletext",
       "oneClick": false,
       "allowToChangeInstallationDirectory": true
-
     }
   },
   "scripts": {
@@ -51,11 +47,13 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.63",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.63",
     "@electron-forge/maker-zip": "^6.0.0-beta.63",
-    "electron-builder": "^22.14.13",
-    "electron": "^17.0.0"
+    "electron": "^17.0.0",
+    "electron-builder": "^22.14.13"
   },
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
+    "ajv-keywords": "^5.1.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "pretty-ms": "^7.0.1"
   },
   "config": {
     "forge": {
