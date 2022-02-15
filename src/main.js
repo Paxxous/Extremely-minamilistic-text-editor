@@ -3,11 +3,37 @@
   the main index.js
 */
 
-
 const { ipcMain, ipcRenderer } = require('electron');
 const fs = require('fs');
+const path = require('path');
+
+// Setup the settings.json
+const setUp = `{
+  "darkmode": false
+}`
+
+if (!fs.existsSync(path.join(__dirname, 'settings.json'))) {
+  fs.writeFileSync(path.join(__dirname, 'settings.json'), setUp);
+}
+
+var jsonSettings = JSON.parse(fs.readFileSync(path.join(__dirname, 'settings.json')));
+console.log(jsonSettings.darkmode);
 
 
+// Convert on startup
+if (!jsonSettings.darkmode) {
+
+  document.getElementById('body').style.color = 'black';
+  document.getElementById('body').style.backgroundColor = 'white';
+  document.getElementById('bottombar').style.backgroundColor = 'white';
+
+} else if (jsonSettings.darkmode) {
+
+  document.getElementById('body').style.color = 'white';
+  document.getElementById('body').style.backgroundColor = 'rgb(56, 56, 56)';
+  document.getElementById('bottombar').style.backgroundColor = 'rgb(56, 56, 56';
+
+}
 
 
 // Save to file shortcut
@@ -45,7 +71,23 @@ document.addEventListener('keydown', (key) => {
   if (key.ctrlKey && key.key == 'g') {
     console.log('Attempting change...');
 
-    document.getElementById('body').style.color = 'white';
-    document.getElementById('body').style.backgroundColor = 'rgb(56, 56, 56)';
+    if (!jsonSettings.darkmode) {
+      jsonSettings.darkmode = true;
+
+      fs.writeFileSync(path.join(__dirname, 'settings.json'), JSON.stringify(jsonSettings, null, 2));
+
+      document.getElementById('body').style.color = 'white';
+      document.getElementById('body').style.backgroundColor = 'rgb(56, 56, 56)';
+      document.getElementById('bottombar').style.backgroundColor = 'rgb(56, 56, 56';
+    } else if (jsonSettings.darkmode) {
+      jsonSettings.darkmode = false;
+
+      fs.writeFileSync(path.join(__dirname, 'settings.json'), JSON.stringify(jsonSettings, null, 2));
+
+      document.getElementById('body').style.color = 'black';
+      document.getElementById('body').style.backgroundColor = 'white';
+      document.getElementById('bottombar').style.backgroundColor = 'white';
+    }
+
   }
 });
